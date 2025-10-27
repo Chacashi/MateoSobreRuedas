@@ -5,11 +5,11 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
-    public static event Action<float> OnMovement;
+    public static event Action<Vector2> OnMovement;
 
     public void Movement(InputAction.CallbackContext context)
     {
-        float movement = context.ReadValue<float>();
+        Vector2 movement = context.ReadValue<Vector2>();
         OnMovement?.Invoke(movement);
     }
 }
