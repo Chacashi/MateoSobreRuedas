@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -9,17 +10,33 @@ public class Timer : MonoBehaviour
     [SerializeField] private int startSeconds = 0;
 
     [Header("UI")]
-    [SerializeField] private TMP_Text timerText; 
+    [SerializeField] private TMP_Text timerText;
+
+    [Header("Referencias")]
+    [SerializeField] private GameObject Player;
+    [SerializeField] private GameObject panelDerrota;
 
     private float totalSeconds;
     private bool isRunning = false;
 
+    public static event Action<int> OnTimeCero;
+
     void Start()
     {
-     
-        totalSeconds = startHours * 3600 + startMinutes * 60 + startSeconds;
-        isRunning = true;
-        UpdateTimerText(); 
+        ResetTimer(startHours, startMinutes, startSeconds);
+
+        if (panelDerrota != null)
+            panelDerrota.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        OnTimeCero += StopTimer;
+    }
+
+    private void OnDisable()
+    {
+        OnTimeCero -= StopTimer;
     }
 
     void Update()
@@ -45,7 +62,6 @@ public class Timer : MonoBehaviour
         int minutes = Mathf.FloorToInt((totalSeconds % 3600) / 60);
         int seconds = Mathf.FloorToInt(totalSeconds % 60);
 
-
         if (hours > 0)
             timerText.text = $"{hours:00}:{minutes:00}:{seconds:00}";
         else
@@ -54,18 +70,35 @@ public class Timer : MonoBehaviour
 
     private void OnTimerEnd()
     {
-
         Debug.Log("¡El tiempo se acabó!");
-    }
 
+        if (Player != null)
+            Player.SetActive(false);
+
+        if (panelDerrota != null)
+            panelDerrota.SetActive(true);
+
+        Time.timeScale = 0f;
+
+        OnTimeCero?.Invoke(0);
+    }
 
     public void ResetTimer(int h, int m, int s)
     {
         startHours = h;
         startMinutes = m;
         startSeconds = s;
+
         totalSeconds = h * 3600 + m * 60 + s;
+
         isRunning = true;
+
         UpdateTimerText();
+        Time.timeScale = 1f; 
+    }
+
+    public void StopTimer(int time)
+    {
+        totalSeconds = time;
     }
 }

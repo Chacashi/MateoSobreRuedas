@@ -3,11 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-
     public void ChangueScene(string newScene)
     {
+        Time.timeScale = 1f;   // REINICIAR EL TIEMPO
         SceneManager.LoadScene(newScene);
     }
+
 
 
     public void Exit()
