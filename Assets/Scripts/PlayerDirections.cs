@@ -14,12 +14,12 @@ public class PlayerDirections : MonoBehaviour
     private void OnEnable()
     {
         InputHandler.OnMovement += HandleMovement;
-        //ArduinoInput.OnMovementEncoder += HandleMovement;
+        ArduinoInput.OnMovementEncoder += HandleMovement;
     }
     private void OnDisable()
     {
         InputHandler.OnMovement -= HandleMovement;
-        //ArduinoInput.OnMovementEncoder -= HandleMovement;
+        ArduinoInput.OnMovementEncoder -= HandleMovement;
     }
 
     private void Awake()
