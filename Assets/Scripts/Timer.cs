@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 
@@ -20,7 +21,8 @@ public class Timer : MonoBehaviour
     private bool isRunning = false;
 
     public static event Action<int> OnTimeCero;
-
+    [DllImport("__Internal")]
+    private static extern void SetTime(string text);
     void Start()
     {
         ResetTimer(startHours, startMinutes, startSeconds);
@@ -63,15 +65,30 @@ public class Timer : MonoBehaviour
         int seconds = Mathf.FloorToInt(totalSeconds % 60);
 
         if (hours > 0)
-            timerText.text = $"{hours:00}:{minutes:00}:{seconds:00}";
+        {
+            string gaaa ="Tiempo: " + $"{hours:00}:{minutes:00}:{seconds:00}";
+#if UNITY_WEBGL && !UNITY_EDITOR
+                                    SetTime(gaaa);
+#endif
+        }
+
         else
-            timerText.text = $"{minutes:00}:{seconds:00}";
+        {
+            string gaaa = "Tiempo: " + $"{minutes:00}:{seconds:00}";
+#if UNITY_WEBGL && !UNITY_EDITOR
+                                    SetTime(gaaa);
+#endif
+
+        }
+
     }
 
     private void OnTimerEnd()
     {
         Debug.Log("¡El tiempo se acabó!");
-
+#if UNITY_WEBGL && !UNITY_EDITOR
+                                    SetTime("");
+#endif
         if (Player != null)
             Player.SetActive(false);
 

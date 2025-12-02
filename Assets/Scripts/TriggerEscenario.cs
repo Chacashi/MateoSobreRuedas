@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class TriggerEscenario : MonoBehaviour
@@ -6,7 +7,10 @@ public class TriggerEscenario : MonoBehaviour
     public GameController controlador;
 
     [Header("Panel de Victoria")]
-    public GameObject panelVictoria; 
+    public GameObject panelVictoria;
+
+    [DllImport("__Internal")]
+    private static extern void SetTime(string text);
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -15,7 +19,9 @@ public class TriggerEscenario : MonoBehaviour
         if (CompareTag("YouWin"))
         {
                 panelVictoria.SetActive(true);
-
+#if UNITY_WEBGL && !UNITY_EDITOR
+                                    SetTime("");
+#endif
             Time.timeScale = 0f; 
 
             return;

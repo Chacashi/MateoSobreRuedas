@@ -18,6 +18,7 @@ public class ManagerMenu : MonoBehaviour
         {
             Time.timeScale = 0.0f;
             PanelOptions.SetActive(true);
+            if (Botones.Length <= 0) return;
             for (int i = 0; i < Botones.Length; i++)
             {
                 Botones[i].SetActive(false);
@@ -27,6 +28,7 @@ public class ManagerMenu : MonoBehaviour
         {
             Time.timeScale = 1.0f;
             PanelOptions.SetActive(false);
+            if (Botones.Length <= 0) return;
             for (int i = 0; i < Botones.Length; i++)
             {
                 Botones[i].SetActive(true);
