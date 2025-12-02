@@ -14,27 +14,48 @@ public class ManagerMenu : MonoBehaviour
     }
     public void OptionsPanel()
     {
-        PanelOptions.SetActive(true);
-        for(int i = 0; i < Botones.Length; i++)
+        if (!PanelOptions.activeSelf)
         {
-            Botones[i].SetActive(false);
+            Time.timeScale = 0.0f;
+            PanelOptions.SetActive(true);
+            for (int i = 0; i < Botones.Length; i++)
+            {
+                Botones[i].SetActive(false);
+            }
         }
+        else
+        {
+            Time.timeScale = 1.0f;
+            PanelOptions.SetActive(false);
+            for (int i = 0; i < Botones.Length; i++)
+            {
+                Botones[i].SetActive(true);
+            }
+        }
+        
+      
     }
     public void CreditsPanel()
     {
-        PanelCreditos.SetActive(true);
-        for (int i = 0; i < Botones.Length; i++)
+        if (!PanelCreditos.activeSelf)
         {
-            Botones[i].SetActive(false);
+            Time.timeScale = 0.0f;
+            PanelCreditos.SetActive(true);
+            for (int i = 0; i < Botones.Length; i++)
+            {
+                Botones[i].SetActive(false);
+            }
         }
+        else
+        {
+            Time.timeScale = 1.0f;
+            PanelCreditos.SetActive(false);
+            for (int i = 0; i < Botones.Length; i++)
+            {
+                Botones[i].SetActive(true);
+            }
+        }
+        
     }
-    public void ClosePanels()
-    {
-        PanelOptions.SetActive(false);
-        PanelCreditos.SetActive(false);
-        for (int i = 0; i < Botones.Length; i++)
-        {
-            Botones[i].SetActive(true);
-        }
-    }   
+
 }

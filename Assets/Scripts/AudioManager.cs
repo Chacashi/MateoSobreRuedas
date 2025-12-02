@@ -8,12 +8,12 @@ public class AudioManager : MonoBehaviour
 
     [Header("Slider Music")]
     [SerializeField] private Slider sliderMaster;
-    [SerializeField] private Slider sliderMusic;
+    //[SerializeField] private Slider sliderMusic;
     [SerializeField] private Slider sliderSFX;
 
     [Header("Text Music")]
     [SerializeField] private TMP_Text textMaster;
-    [SerializeField] private TMP_Text textMusic;
+    //[SerializeField] private TMP_Text textMusic;
     [SerializeField] private TMP_Text textSFX;
 
     private void Awake()
@@ -30,14 +30,14 @@ public class AudioManager : MonoBehaviour
         sliderMaster.value = audioSettings.GetMasterVolume();
         sliderMaster.onValueChanged.AddListener(UpdateMasterVolume);
 
-        sliderMusic.value = audioSettings.GetMusicVolume();
-        sliderMusic.onValueChanged.AddListener(UpdateMusicVolume);
+       // sliderMusic.value = audioSettings.GetMusicVolume();
+        //sliderMusic.onValueChanged.AddListener(UpdateMusicVolume);
 
         sliderSFX.value = audioSettings.GetSFXVolume();
         sliderSFX.onValueChanged.AddListener(UpdateSFXVolume);
 
         UpdateMasterVolume(sliderMaster.value);
-        UpdateMusicVolume(sliderMusic.value);
+        //UpdateMusicVolume(sliderMusic.value);
         UpdateSFXVolume(sliderSFX.value);
 
     }
@@ -47,11 +47,11 @@ public class AudioManager : MonoBehaviour
         audioSettings.SetMasterVolume(value);
     }
 
-    private void UpdateMusicVolume(float value)
+    /*private void UpdateMusicVolume(float value)
     {
         textMusic.text = Mathf.RoundToInt(value * 100).ToString();
         audioSettings.SetMusicVolume(value);
-    }
+    }*/
 
     private void UpdateSFXVolume(float value)
     {

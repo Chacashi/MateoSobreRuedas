@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42ca1d8b28c70304f8a290ec74384cb7, type: 3}
+  m_Name: Boton
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: cb800025e8999564ea58e6e0ec2725fc, type: 3}
+  audioMixerGroup: {fileID: -3338692099324897849, guid: 9c02180eeff8b484686c2748ebea761f, type: 2}
